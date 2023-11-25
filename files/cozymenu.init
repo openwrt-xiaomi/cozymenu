@@ -1,0 +1,27 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+
+boot() {
+	/usr/share/cozymenu/cozymenu.sh -- boot
+	return 0
+}
+
+reload() {
+	/usr/share/cozymenu/cozymenu.sh -- reload
+	return 0
+}
+
+restart() {
+	/usr/share/cozymenu/cozymenu.sh -- stop
+	/usr/share/cozymenu/cozymenu.sh -- start
+}
+
+start() {
+	/usr/share/cozymenu/cozymenu.sh -- start
+}
+
+stop() {
+	/usr/share/cozymenu/cozymenu.sh -- stop
+	return 0
+}

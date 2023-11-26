@@ -38,10 +38,10 @@ function cozymenu_hook(menu) {
 			return menu
 		}
 	}
-	catch {
+	catch (e) {
 		return menu;
 	}
-	syslog2("info", "cozy_menu: 001");
+	//syslog2("info", "cozy_menu: 001");
 	
 	if (cm_data == "_empty_") {
 		cm_data = read_jsonfile(cm_data_fn, null);

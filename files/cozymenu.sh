@@ -27,8 +27,15 @@ cm_sed_path() {
 	echo "$str"
 }
 
+cm_reload_luci() {
+	rm -f /tmp/luci-index*
+	rm -rf /tmp/luci-modulecache
+	luci-reload
+	return 0
+}
+
 CM_MENU_ORIG_FN="/usr/share/ucode/luci/dispatcher.uc"
-CM_MENU_HOOK_FN="$CM_PROGDIR/$CM_PROGNAME.uc"
+CM_MENU_HOOK_FN="/usr/share/ucode/luci/$CM_PROGNAME.uc"
 CM_MENU_HOOK_FUNC="cozymenu_hook"
 
 #############################
@@ -97,23 +104,36 @@ cm_patch_funcmenu() {
 
 cm_remove_all_hooks() {
 	sed -i "/$CM_MENU_HOOK_FUNC/d" $CM_MENU_ORIG_FN
+	rm -f "$CM_MENU_HOOK_FN"
 }
 
 cm_install_menu_hooks() {
+	local cmfn
 	cmlog "cm_install_menu_hooks"
+	cmfn="$CM_PROGDIR/$CM_PROGNAME.uc"
+	if [ -f "$CM_MENU_HOOK_FN" ]; then
+		cmlog 'File "'"$( basename $CM_MENU_HOOK_FN )"'" already installed'
+		return 0
+	fi
+	cp -f "$cmfn" "$CM_MENU_HOOK_FN"
+	if [ ! -f "$CM_MENU_HOOK_FN" ]; then
+		cmerr 'FATAL ERROR: File "'"$( basename $CM_MENU_HOOK_FN )"'" could not copy'
+		cm_remove_all_hooks
+		return 1
+	fi
+	chmod 644 "$CM_MENU_HOOK_FN"
 	cm_patch_import
 	[ $? != 0 ] && { cm_remove_all_hooks ; return 1; }
 	cm_patch_funcmenu
 	[ $? != 0 ] && { cm_remove_all_hooks ; return 1; }
-	rm -f /tmp/luci-index*
-	rm -rf /tmp/luci-modulecache
-	luci-reload
+	cm_reload_luci
 	return 0
 }
 
 cm_remove_menu_hooks() {
 	cmlog "cm_remove_menu_hooks"
 	cm_remove_all_hooks
+	cm_reload_luci
 	return 0
 }
 
@@ -170,6 +190,7 @@ case "$1" in
 		;;
 	reload)
 		cmlog "reload"
+		cm_reload_luci
 		exit 0
 		;;
 	*)

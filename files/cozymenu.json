@@ -21,7 +21,10 @@
             [ "vpn", "openvpn" ],
             [ "status", "wireguard" ],
             [ "services", "shadowsocks-libev" ],
-            [ "services", "shadowsocks" ]
+            [ "services", "shadowsocks" ],
+            [ "services", "xray_core" ],
+            [ "services", "xray_preview" ],
+            [ "status", "xray_status" ]
         ]
     }
 }

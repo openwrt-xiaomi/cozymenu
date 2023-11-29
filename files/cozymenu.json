@@ -24,7 +24,8 @@
             [ "services", "shadowsocks" ],
             [ "services", "xray_core" ],
             [ "services", "xray_preview" ],
-            [ "status", "xray_status" ]
+            [ "status", "xray_status" ],
+            [ "services", "homeproxy" ]
         ]
     }
 }

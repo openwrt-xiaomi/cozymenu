@@ -85,14 +85,14 @@ function cozymenu_hook(menu) {
 			let k = v[1];
 			//syslog2("info", sprintf("cozy_menu: %d = %s", order, k));
 			//syslog2("info", sprintf("    '%s'", nm.children[k]));
-			if (nm.children[k]) {
+			if (k in nm.children) {
 				//submenu already exist. Skip
 				nm.children[k].order = order + 1;
 			} else if (length(v) > 1) {
 				let k1 = v[0];
 				let k2 = v[1];
-				if (menu.children.admin.children[k1]) {
-					if (menu.children.admin.children[k1].children[k2]) {
+				if (k1 in menu.children.admin.children && menu.children.admin.children[k1]) {
+					if (k2 in menu.children.admin.children[k1].children) {
 						nm.children[k] = menu.children.admin.children[k1].children[k2];
 						nm.children[k].order = order + 1;
 						if (nm.children[k].action.path) {

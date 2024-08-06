@@ -20,6 +20,7 @@
         "items": [
             [ "vpn", "openvpn" ],
             [ "status", "wireguard" ],
+            [ "status", "amneziawg" ],
             [ "services", "shadowsocks-libev" ],
             [ "services", "shadowsocks" ],
             [ "services", "xray_core" ],

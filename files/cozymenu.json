@@ -5,6 +5,7 @@
         "items": [
             [ "nas", "filebrowser" ],
             [ "services", "samba4" ],
+            [ "services", "ksmbd" ],
             [ "services", "aria2" ],
             [ "services", "transmission" ],
             [ "services", "qbittorrent" ],

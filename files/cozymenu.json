@@ -11,6 +11,7 @@
             [ "services", "qbittorrent" ],
             [ "system", "diskman" ],
             [ "services", "disks-info" ],
+            [ "status",   "disks-info" ],
             [ "services", "hd_idle" ],
             [ "services", "minidlna" ]
         ]

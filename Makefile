@@ -5,8 +5,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cozymenu
-PKG_VERSION:=1.1
-PKG_RELEASE:=20240104
+PKG_VERSION:=1.2
+PKG_RELEASE:=20250204
 
 PKG_MAINTAINER:=remittor <remittor@gmail.com>
 PKG_LICENSE:=MIT

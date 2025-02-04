@@ -93,6 +93,9 @@ function cozymenu_hook(menu) {
 				let k2 = v[1];
 				if (k1 in menu.children.admin.children && menu.children.admin.children[k1]) {
 					if (k2 in menu.children.admin.children[k1].children) {
+						if (!nm.children) {
+							nm.children = {};
+						}
 						nm.children[k] = menu.children.admin.children[k1].children[k2];
 						nm.children[k].order = order + 1;
 						if (nm.children[k].action.path) {
